@@ -49,7 +49,7 @@ function ExpenseForm({ onAdd }) {
                 <option value="lainnya">Lainnya</option>
             </select>
 
-            <button onClick={hanldeSubmit}>Tambah</button>
+            <button onClick={handleSubmit}>tambah</button>
 
         </div>
     )
