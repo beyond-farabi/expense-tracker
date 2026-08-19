@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { CATEGORIES } from './utils'
 
 function ExpenseForm({ onAdd }) {
     const [description, setDescription] = useState("")
@@ -43,10 +44,9 @@ function ExpenseForm({ onAdd }) {
             />
 
             <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                <option value="makanan">Makanan</option>
-                <option value="transfortasi">Transfortasi</option>
-                <option value="belanja">Belanja</option>
-                <option value="lainnya">Lainnya</option>
+                {CATEGORIES.map((cat) => (
+                    <option key={cat} value={cat}>{cat}</option>
+                ))}
             </select>
 
             <button onClick={handleSubmit}>tambah</button>

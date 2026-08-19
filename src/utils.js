@@ -5,3 +5,5 @@ export function formatRupiah(angka) {
       minimumFractionDigits: 0 
     }).format(angka)
 }
+
+export const CATEGORIES = ['makanan', 'transportasi', 'belanja', 'lainnya']

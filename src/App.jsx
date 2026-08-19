@@ -2,9 +2,36 @@ import { useState, useEffect } from 'react'
 import ExpenseForm from './ExpenseForm.jsx'
 import { formatRupiah } from './utils.js'
 import ExpenseList from './ExpenseList.jsx'
+import CategoryFilter from './CategoryFilter.jsx'
 
 function App() {
   const [expenses, setExpenses] = useState([])
+  const [activeCategory, setActiveCategory] = useState("semua")
+  const [loaded, setLoaded] = useState(false)
+
+  // derived state - daftar yang tampil
+  // kalau active Category "semua" seluruh expenses
+  // selain itu -> expenses yang category-nya cocok
+  const visible = activeCategory === "semua"
+    ? expenses
+    : expenses.filter((e) => e.category === activeCategory)
+
+  useEffect(() => {
+    const saved = localStorage.getItem("expenses")
+    if (saved) {
+      try {
+        setExpenses(JSON.parse(saved))
+      } catch (err) {
+        localStorage.removeItem("expenses")
+      }
+    }
+    setLoaded(true)
+  }, [])
+
+  useEffect(() => {
+    if (!loaded) return
+    localStorage.setItem("expenses", JSON.stringify(expenses))
+  }, [expenses, loaded])
 
   function handleAdd(expense) {
     // tambahkan expense ke array
@@ -27,8 +54,10 @@ function App() {
       {/* tampilkan total */}
       <p>{formatRupiah(total)}</p>
 
+      <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
+
       {/* daftar pengeluaran - map dari expenses */}
-      <ExpenseList expenses={expenses} onDelete={handleDelete} />
+      <ExpenseList expenses={visible} onDelete={handleDelete} />
 
     </div>
   )
