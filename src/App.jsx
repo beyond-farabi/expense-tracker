@@ -3,6 +3,7 @@ import ExpenseForm from './ExpenseForm.jsx'
 import { formatRupiah } from './utils.js'
 import ExpenseList from './ExpenseList.jsx'
 import CategoryFilter from './CategoryFilter.jsx'
+import Summary from './Summary.jsx'
 
 function App() {
   const [expenses, setExpenses] = useState([])
@@ -52,7 +53,7 @@ function App() {
       <ExpenseForm onAdd={handleAdd} />
 
       {/* tampilkan total */}
-      <p>{formatRupiah(total)}</p>
+      <Summary total={total} />
 
       <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
 
