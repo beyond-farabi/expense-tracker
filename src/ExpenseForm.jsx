@@ -27,7 +27,7 @@ function ExpenseForm({ onAdd }) {
     }
 
     return (
-        <div>
+        <div className='expense-form'>
             <input 
                 type='text'
                 placeholder='Deskripsi'

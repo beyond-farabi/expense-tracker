@@ -4,7 +4,7 @@ function CategoryFilter({ active, onChange }) {
     const options = ["semua", ...CATEGORIES]
 
     return (
-        <div className="categoryFilter">
+        <div className="category-filter">
             {/* map option jadi tombol: 
             key, 
             onClick manggil onChange dengan kategorinya, 
